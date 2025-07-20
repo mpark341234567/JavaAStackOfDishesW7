@@ -45,4 +45,15 @@ public class DishStackTest {
         stack.pop();
         assertEquals(1, stack.size());
     }   
+    @Test
+    void testErrors() {
+        DishStack stack = new DishStack();
+        assertThrows(IllegalStateException.class, stack::pop);//pop error
+        assertThrows(IllegalStateException.class, stack::peek);//peek error
+        for (int i = 0; i < 4; i++) {
+            stack.push(new Dish("Dish " + i));
+        }
+        assertThrows(IllegalStateException.class, () -> stack.push(new Dish("Extra Dish")));
+        // push error
+    }
 }
