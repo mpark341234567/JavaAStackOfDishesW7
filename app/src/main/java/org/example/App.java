@@ -43,5 +43,25 @@ public class App {
         // The variable finalSize should equal two.
         int finalSize = stack.size();
         System.out.println("Final stack size: " + finalSize);
+
+        DishStack emptyStack = new DishStack();
+        try {
+            emptyStack.pop();
+        } catch (IllegalStateException e) {
+            System.out.println("Caught expected exception: " + e.getMessage());
+        }
+        try {
+            emptyStack.peek();
+        } catch (IllegalStateException e) {
+            System.out.println("Caught expected exception: " + e.getMessage());
+        }
+        for (int i = 0; i < 4; i++) {
+            emptyStack.push(new Dish("Dish " + i));
+        }
+        try {
+            emptyStack.push(new Dish("Extra Dish"));
+        } catch (IllegalStateException e) {
+            System.out.println("Caught expected exception: " + e.getMessage());
+        }
     }
 }
